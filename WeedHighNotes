@@ -1,0 +1,9 @@
+Multiple failed non-interactive sign-ins
+SigninLogs
+| where ResultType == "50074"  // Failed sign-ins
+| where SignInEventType == "NonInteractiveUser"
+| summarize count() by UserPrincipalName, bin(TimeGenerated, 1h)
+| where count_ > 5
+
+
+Ctrl+Shift+K --> Select All and Delete in Nano
